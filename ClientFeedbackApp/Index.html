@@ -1,9 +1,20 @@
 ﻿<!DOCTYPE html>
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-    <title></title>
+    <title>Client Feedback</title>
+    <script src="Scripts/common/libs/angular/angular.js"></script>
+    <script src="Scripts/common/libs/angular/angular-route.js"></script>
+    <script src="Scripts/app/app.js"></script>
+    <script src="Scripts/app/components/clients.view/viewClients.controller.js"></script>
+    <script src="Scripts/app/components/clients.view/viewClients.dataService.js"></script>
+    <link href="Content/Styles/clientStyles.css" rel="stylesheet" />
 </head>
 <body>
-
+    <div ng-app="clientFeedbackApp">
+        <div>
+            <h1>Client Feedback App</h1>
+            <div ng-view></div>
+        </div>
+    </div>
 </body>
 </html>

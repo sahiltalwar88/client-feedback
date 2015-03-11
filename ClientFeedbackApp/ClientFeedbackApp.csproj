@@ -87,6 +87,11 @@
     <Content Include="Content\Styles\clientStyles.css" />
     <Content Include="Global.asax" />
     <Content Include="Index.html" />
+    <Content Include="Scripts\app\app.js" />
+    <Content Include="Scripts\app\components\clients.view\viewClients.controller.js" />
+    <Content Include="Scripts\app\components\clients.view\viewClients.dataService.js" />
+    <Content Include="Scripts\app\components\clients.view\viewClients.view.html" />
+    <Content Include="Scripts\app\components\SpecRunner.html" />
     <Content Include="Scripts\common\libs\angular\angular-animate.js" />
     <Content Include="Scripts\common\libs\angular\angular-animate.min.js" />
     <Content Include="Scripts\common\libs\angular\angular-aria.js" />
@@ -895,7 +900,6 @@
     <Folder Include="App_Data\" />
     <Folder Include="Content\Images\" />
     <Folder Include="Models\" />
-    <Folder Include="Scripts\app\components\clients.view\" />
     <Folder Include="Scripts\app\shared\" />
   </ItemGroup>
   <ItemGroup>
