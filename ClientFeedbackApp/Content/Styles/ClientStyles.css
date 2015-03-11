@@ -1,0 +1,14 @@
+﻿table {
+    width: 100%; 
+    text-align: left;
+    margin-top: 10px;
+}
+td {
+   vertical-align: top; 
+}
+a {
+    text-decoration: none;
+}
+.spaced {
+    padding-right: 30px;
+}
