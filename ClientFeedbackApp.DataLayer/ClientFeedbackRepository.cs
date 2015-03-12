@@ -22,9 +22,9 @@ namespace ClientFeedbackApp.DataLayer
         {
             try
             {
-                return _ctx.SaveChanges() > 0;
+                 return _ctx.SaveChanges() > 0;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
@@ -37,15 +37,38 @@ namespace ClientFeedbackApp.DataLayer
                 _ctx.Clients.Add(newClient);
                 return true;
             }
-            catch (Exception)
+            catch (Exception e)
             {
                 return false;
             }
         }
 
-        public bool EditClient()
+        public bool EditClient(Client updatedClient)
         {
-            return true;
+            try
+            {
+                var currentClient = _ctx.Clients.SingleOrDefault(x => x.Id == updatedClient.Id);
+
+                if (currentClient == null)
+                {
+                    return false;
+                }
+
+                currentClient.Date = updatedClient.Date;
+                currentClient.Feedback = updatedClient.Feedback;
+                currentClient.Grade = updatedClient.Grade;
+                currentClient.Name = updatedClient.Name;
+                currentClient.PocName = updatedClient.PocName;
+                currentClient.ProjectName = updatedClient.ProjectName;
+
+                _ctx.SaveChanges();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
         }
 
         public bool DeleteClient()

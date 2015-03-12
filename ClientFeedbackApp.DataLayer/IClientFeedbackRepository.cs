@@ -8,7 +8,7 @@ namespace ClientFeedbackApp.DataLayer
         IQueryable<Client> GetClients();
         bool Save();
         bool AddClient(Client newClient);
-        bool EditClient();
+        bool EditClient(Client updatedClient);
         bool DeleteClient();
     }
 }

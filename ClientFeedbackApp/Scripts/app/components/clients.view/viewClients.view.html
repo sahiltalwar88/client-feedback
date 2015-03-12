@@ -17,47 +17,47 @@
         <tbody>
             <tr ng-repeat="client in clients">
                 <td>
-                    <span ng-hide="client.isInEditMode">{{ client.name }}</span>
+                    <span ng-hide="client.isInEditMode">{{ client.Name }}</span>
                     <input type="text" ng-show="client.isInEditMode" ng-model="client.name" autofocus />
                 </td>
                 <td>
-                    <span ng-hide="client.isInEditMode">{{ client.projectName }}</span>
+                    <span ng-hide="client.isInEditMode">{{ client.ProjectName }}</span>
                     <input type="text" ng-show="client.isInEditMode" ng-model="client.projectName" autofocus />
                 </td>
                 <td>
-                    <span ng-hide="client.isInEditMode">{{ client.pocName }}</span>
+                    <span ng-hide="client.isInEditMode">{{ client.PocName }}</span>
                     <input type="text" ng-show="client.isInEditMode" ng-model="client.pocName" autofocus />
                 </td>
                 <td>
-                    <span ng-hide="client.isInEditMode">{{ client.quarter}}</span>
+                    <span ng-hide="client.isInEditMode">{{ client.Quarter}}</span>
                     <input type="text" ng-show="client.isInEditMode" ng-model="client.quarter" autofocus />
                 </td>
                 <td>
-                    <span ng-hide="client.isInEditMode">{{ client.date }}</span>
+                    <span ng-hide="client.isInEditMode">{{ client.Date | date: 'shortDate' }}</span>
                     <input type="text" ng-show="client.isInEditMode" ng-model="client.date" autofocus />
                 </td>
                 <td>
-                    <span ng-hide="client.isInEditMode">{{ client.grade }}</span>
+                    <span ng-hide="client.isInEditMode">{{ client.Grade }}</span>
                     <input type="text" ng-show="client.isInEditMode" ng-model="client.grade" autofocus />
                 </td>
                 <td>
-                    <textarea rows="5" ng-hide="client.isInEditMode" readonly>{{ client.feedback }}</textarea>
+                    <textarea rows="5" ng-hide="client.isInEditMode" readonly>{{ client.Feedback }}</textarea>
                     <textarea rows="5" ng-show="client.isInEditMode" ng-model="client.feedback"></textarea>
                 </td>
                 <td>
                     <button ng-hide="client.isInEditMode" ng-click="setIsInEditMode(client, true)">Edit</button>
                     <button ng-show="client.isInEditMode" ng-click="setIsInEditMode(client, false)">Save</button>
-                    <button ng-hide="client.isInEditMode" ng-click="deleteClient($index)">Delete</button>
+                    <button ng-hide="client.isInEditMode" ng-click="deleteClient(client)">Delete</button>
                 </td>
             </tr>
             <tr>
-                <td><input type="text" ng-model="newClient.name"></td>
-                <td><input type="text" ng-model="newClient.projectName"></td>
-                <td><input type="text" ng-model="newClient.pocName"></td>
-                <td><input type="text" ng-model="newClient.quarter"></td>
-                <td><input type="text" ng-model="newClient.date"></td>
-                <td><input type="text" ng-model="newClient.grade"></td>
-                <td><textarea rows="5" ng-model="newClient.feedback"></textarea></td>
+                <td><input type="text" ng-model="newClient.Name"></td>
+                <td><input type="text" ng-model="newClient.ProjectName"></td>
+                <td><input type="text" ng-model="newClient.PocName"></td>
+                <td><input type="text" ng-model="newClient.Quarter"></td>
+                <td><input type="text" ng-model="newClient.Date"></td>
+                <td><input type="text" ng-model="newClient.Grade"></td>
+                <td><textarea rows="5" ng-model="newClient.Feedback"></textarea></td>
                 <td><button ng-click="addClient()">Add</button></td>
             </tr>
         </tbody>

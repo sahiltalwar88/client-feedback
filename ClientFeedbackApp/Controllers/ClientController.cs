@@ -18,5 +18,17 @@ namespace ClientFeedbackApp.Controllers
         {
             return _repo.GetClients();
         }
+
+        public HttpResponseMessage Post([FromBody] Client newClient)
+        {
+            if (_repo.AddClient(newClient) &&
+                _repo.Save())
+            {
+                return Request.CreateResponse(HttpStatusCode.Created,
+                    newClient);
+            }
+
+            return Request.CreateResponse(HttpStatusCode.BadRequest);
+        }
     }
 }
