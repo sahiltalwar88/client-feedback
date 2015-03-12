@@ -61,7 +61,7 @@ namespace ClientFeedbackApp.DataLayer
                 currentClient.PocName = updatedClient.PocName;
                 currentClient.ProjectName = updatedClient.ProjectName;
 
-                _ctx.SaveChanges();
+                //_ctx.SaveChanges();
 
                 return true;
             }
@@ -71,9 +71,25 @@ namespace ClientFeedbackApp.DataLayer
             }
         }
 
-        public bool DeleteClient()
+        public bool DeleteClient(int clientId)
         {
-            return true;
+            try
+            {
+                var clientToDelete = _ctx.Clients.SingleOrDefault(x => x.Id == clientId);
+
+                if (clientToDelete == null)
+                {
+                    return false;
+                }
+
+                _ctx.Clients.Remove(clientToDelete);
+                //_ctx.SaveChanges();
+                return true;
+            }
+            catch (Exception)
+            {
+                return false;
+            }
         }
     }
 }

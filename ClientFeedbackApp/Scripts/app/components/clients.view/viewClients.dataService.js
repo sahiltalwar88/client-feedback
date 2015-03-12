@@ -5,9 +5,8 @@ angular.module("clientFeedbackApp").service("clientDataService", ["$http", funct
     var getClients = function() {
         var clients = [];
 
-        $http.get("/api/client").
+        $http.get("/api/client/GetClients").
             success(function(data) {
-                //clients = angular.copy(result.data);
                 angular.copy(data, clients);
             }).
             error(function() {
@@ -22,29 +21,54 @@ angular.module("clientFeedbackApp").service("clientDataService", ["$http", funct
         var addedClient = {};
         var myClients = clients;
 
-        $http.post("/api/client", newClient).//then(
+        $http.post("/api/client/AddClient", newClient).
             success(function(data) {
                 addedClient = angular.copy(data);
                 myClients.push(addedClient);
-                //$window.location
             }).
             error(function() {
                 //error
-                console.log("add clients error");
+                console.log("add client error");
             });
 
         return myClients;
     };
 
     var deleteClient = function (clientToBeDeleted, clients) {
+        var myClients = clients;
+        var deletedClient = clientToBeDeleted;
 
+        $http.post("/api/client/DeleteClient/" + deletedClient.Id).
+            success(function(data) {
+                myClients = data;
+            }).
+            error(function() {
+                //error
+                console.log("delete client error");
+            });
 
-        //var numToDelete = 1;
-        //$scope.clients.splice(index, numToDelete);
-    }
+        return myClients;
+    };
+
+    var editClient = function(clientToBeEdited, clients) {
+        var editedClient = clientToBeEdited;
+        var myClients = clients;
+
+        $http.post("/api/client/EditClient", editedClient)
+            .success(function(data) {
+                myClients = data;
+            })
+            .error(function() {
+
+            });
+
+        return myClients;
+    };
 
     return {
         getClients: getClients,
-        addClient: addClient
+        addClient: addClient,
+        deleteClient: deleteClient,
+        editClient: editClient
     }
 }]);

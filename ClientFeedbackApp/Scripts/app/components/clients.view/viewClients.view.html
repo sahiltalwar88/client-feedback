@@ -18,31 +18,31 @@
             <tr ng-repeat="client in clients">
                 <td>
                     <span ng-hide="client.isInEditMode">{{ client.Name }}</span>
-                    <input type="text" ng-show="client.isInEditMode" ng-model="client.name" autofocus />
+                    <input type="text" ng-show="client.isInEditMode" ng-model="client.Name" autofocus />
                 </td>
                 <td>
                     <span ng-hide="client.isInEditMode">{{ client.ProjectName }}</span>
-                    <input type="text" ng-show="client.isInEditMode" ng-model="client.projectName" autofocus />
+                    <input type="text" ng-show="client.isInEditMode" ng-model="client.ProjectName" autofocus />
                 </td>
                 <td>
                     <span ng-hide="client.isInEditMode">{{ client.PocName }}</span>
-                    <input type="text" ng-show="client.isInEditMode" ng-model="client.pocName" autofocus />
+                    <input type="text" ng-show="client.isInEditMode" ng-model="client.PocName" autofocus />
                 </td>
                 <td>
                     <span ng-hide="client.isInEditMode">{{ client.Quarter}}</span>
-                    <input type="text" ng-show="client.isInEditMode" ng-model="client.quarter" autofocus />
+                    <input type="text" ng-show="client.isInEditMode" ng-model="client.Quarter" autofocus />
                 </td>
                 <td>
                     <span ng-hide="client.isInEditMode">{{ client.Date | date: 'shortDate' }}</span>
-                    <input type="text" ng-show="client.isInEditMode" ng-model="client.date" autofocus />
+                    <input type="text" ng-show="client.isInEditMode" ng-model="client.Date | date: 'shortDate'" autofocus />
                 </td>
                 <td>
                     <span ng-hide="client.isInEditMode">{{ client.Grade }}</span>
-                    <input type="text" ng-show="client.isInEditMode" ng-model="client.grade" autofocus />
+                    <input type="text" ng-show="client.isInEditMode" ng-model="client.Grade" autofocus />
                 </td>
                 <td>
                     <textarea rows="5" ng-hide="client.isInEditMode" readonly>{{ client.Feedback }}</textarea>
-                    <textarea rows="5" ng-show="client.isInEditMode" ng-model="client.feedback"></textarea>
+                    <textarea rows="5" ng-show="client.isInEditMode" ng-model="client.Feedback"></textarea>
                 </td>
                 <td>
                     <button ng-hide="client.isInEditMode" ng-click="setIsInEditMode(client, true)">Edit</button>

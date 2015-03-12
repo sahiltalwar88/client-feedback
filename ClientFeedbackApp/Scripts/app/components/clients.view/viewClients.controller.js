@@ -16,5 +16,9 @@ angular.module("clientFeedbackApp").controller("clientController", ["$scope", "c
 
     $scope.setIsInEditMode = function (client, editMode) {
         client.isInEditMode = editMode;
+
+        if (!editMode) {
+            $scope.clients = clientDataService.editClient(client, $scope.clients);
+        }
     }
 }]);

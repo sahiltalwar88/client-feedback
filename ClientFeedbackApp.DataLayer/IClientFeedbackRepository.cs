@@ -9,6 +9,6 @@ namespace ClientFeedbackApp.DataLayer
         bool Save();
         bool AddClient(Client newClient);
         bool EditClient(Client updatedClient);
-        bool DeleteClient();
+        bool DeleteClient(int clientId);
     }
 }
