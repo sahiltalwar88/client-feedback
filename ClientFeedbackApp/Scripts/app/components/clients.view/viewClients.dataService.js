@@ -11,7 +11,7 @@ angular.module("clientFeedbackApp").service("clientDataService", ["$http", funct
             }).
             error(function() {
                 //error
-                console.log("get clientts error");
+                console.log("get clients error");
         });
 
         return clients;

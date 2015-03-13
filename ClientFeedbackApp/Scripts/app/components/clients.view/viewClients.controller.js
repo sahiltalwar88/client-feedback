@@ -1,6 +1,6 @@
 ﻿"use strict";
 
-angular.module("clientFeedbackApp").controller("clientController", ["$scope", "clientDataService", function ($scope, clientDataService) {
+angular.module("clientFeedbackApp").controller("clientController", ["$scope", "clientDataService", "$route", function ($scope, clientDataService, $route) {
 
     $scope.clients = clientDataService.getClients();
     $scope.newClient = {};
