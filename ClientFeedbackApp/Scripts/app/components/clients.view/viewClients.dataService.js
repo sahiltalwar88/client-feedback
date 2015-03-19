@@ -5,7 +5,7 @@ angular.module("clientFeedbackApp").service("clientDataService", ["$http", funct
     var getClients = function() {
         var clients = [];
 
-        $http.get("/api/client/GetClients").
+        $http.get("client/get").
             success(function(data) {
                 angular.copy(data, clients);
             }).
@@ -21,7 +21,7 @@ angular.module("clientFeedbackApp").service("clientDataService", ["$http", funct
         var addedClient = {};
         var myClients = clients;
 
-        $http.post("/api/client/AddClient", newClient).
+        $http.post("client/add", newClient).
             success(function(data) {
                 addedClient = angular.copy(data);
                 myClients.push(addedClient);
@@ -38,7 +38,7 @@ angular.module("clientFeedbackApp").service("clientDataService", ["$http", funct
         var myClients = clients;
         var deletedClient = clientToBeDeleted;
 
-        $http.post("/api/client/DeleteClient/" + deletedClient.Id).
+        $http.post("/api/client/delete/" + deletedClient.Id).
             success(function(data) {
                 myClients = data;
             }).
@@ -54,7 +54,7 @@ angular.module("clientFeedbackApp").service("clientDataService", ["$http", funct
         var editedClient = clientToBeEdited;
         var myClients = clients;
 
-        $http.post("/api/client/EditClient", editedClient)
+        $http.post("/api/client/edit", editedClient)
             .success(function(data) {
                 myClients = data;
             })

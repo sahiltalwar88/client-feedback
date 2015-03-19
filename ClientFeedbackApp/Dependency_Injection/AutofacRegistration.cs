@@ -1,5 +1,6 @@
 ﻿using Autofac;
 using ClientFeedbackApp.DataLayer;
+using ClientFeedbackApp.DataLayer.EntityFramework;
 
 namespace ClientFeedbackApp.Dependency_Injection
 {
@@ -7,7 +8,7 @@ namespace ClientFeedbackApp.Dependency_Injection
     {
         public static void RegisterDependencies(ContainerBuilder builder)
         {
-            builder.RegisterType<ClientFeedbackRepository>().As<IClientFeedbackRepository>();
+            builder.RegisterType<ClientFeedbackContext>().As<IClientFeedbackContext>();
         }
     }
 }

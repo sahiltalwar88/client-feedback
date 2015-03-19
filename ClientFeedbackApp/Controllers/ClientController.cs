@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -9,58 +8,57 @@ using ClientFeedbackApp.DataLayer.Models;
 
 namespace ClientFeedbackApp.Controllers
 {
+    [RoutePrefix("client")]
     public class ClientController : ApiController
     {
-        //TODO: DI this!
-        private IClientFeedbackRepository _repo = new ClientFeedbackRepository(new ClientFeedbackContext());
+        private readonly IClientFeedbackContext database;
 
-        [ActionName("GetClients")]
+        public ClientController(IClientFeedbackContext database)
+        {
+            this.database = database;
+        }
+
         [HttpGet]
+        [Route("get")]
         public IEnumerable<Client> Get()
         {
-            return _repo.GetClients();
+            return database.Clients.ToList();
         }
 
-        [ActionName("AddClient")]
         [HttpPost]
+        [Route("add/{newClient}")]
         public HttpResponseMessage Post([FromBody] Client newClient)
         {
-            if (_repo.AddClient(newClient) &&
-                _repo.Save())
-            {
-                return Request.CreateResponse(HttpStatusCode.Created,
-                    newClient);
-            }
+            database.Add(newClient);
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return database.SaveChanges<Client>() > 0
+                ? Request.CreateResponse(HttpStatusCode.Created, newClient)
+                : Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        [ActionName("DeleteClient")]
         [HttpPost]
+        [Route("delete/{id}")]
         public HttpResponseMessage PostDelete(int id)
         {
-            if (_repo.DeleteClient(id) &&
-                _repo.Save())
-            {
-            return Request.CreateResponse(HttpStatusCode.OK,
-                _repo.GetClients());
-            }
+            //if (database.DeleteClient(id) &&
+            //    database.Save())
+            //{
+            //return Request.CreateResponse(HttpStatusCode.OK,
+            //    database.GetClients());
+            //}
 
             return Request.CreateResponse(HttpStatusCode.BadRequest);
         }
 
-        [ActionName("EditClient")]
         [HttpPost]
+        [Route("edit/{client}")]
         public HttpResponseMessage PostEdit([FromBody] Client updatedClient)
         {
-            if (_repo.EditClient(updatedClient) &&
-                _repo.Save())
-            {
-                return Request.CreateResponse(HttpStatusCode.OK,
-                    _repo.GetClients());
-            }
+            var myUpdatedClient = Client.MergeChanges(database.Clients.SingleOrDefault(x => x.Id == updatedClient.Id), updatedClient);
 
-            return Request.CreateResponse(HttpStatusCode.BadRequest);
+            return database.SaveChanges<Client>() > 0
+                ? Request.CreateResponse(HttpStatusCode.Created, myUpdatedClient)
+                : Request.CreateResponse(HttpStatusCode.BadRequest);
         }
     }
 }
